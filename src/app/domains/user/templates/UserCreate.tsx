@@ -12,7 +12,7 @@ export const UserCreate = () => {
       password: "",
     },
     onSubmit: async(values) => {
-      alert(JSON.stringify(values, null, 2));
+      alert('Usuario creado');
       try {
         const user = await window.api.createUser(values);
         console.log(user)

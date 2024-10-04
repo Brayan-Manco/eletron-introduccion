@@ -8,6 +8,19 @@ export const UserList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const deleteUser = async(id: string)=> {
+    try {
+      
+      await window.api.deleteUser(id)
+      setUsers(users.filter(user => user.id !== id))
+      alert('Usuario elimando correctamente')
+      
+    } catch (error) {
+      alert('Error al eliminar al Usuario')
+      handleError(error)
+    }
+  }
+
   const getAllUsers = async () => {
     try {
       setLoading(true);
@@ -55,7 +68,7 @@ export const UserList = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                  <Button variant="red" name="Eliminar"/> 
+                  <Button variant="red" name="Eliminar" onClick={() => deleteUser(user.id)}/> 
                   <Button name="Actualizar" /> 
                 </td>
               </tr>
