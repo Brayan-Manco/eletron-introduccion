@@ -1,11 +1,7 @@
-import { app, BrowserWindow, screen, session, ipcMain } from 'electron';
+import { app, BrowserWindow, screen, session } from 'electron';
 import path from 'path';
-import { PrismaClient } from '@prisma/client';
-import { createUser, getUsers } from './backend/controllers/userController';
 import { setupIpcHandlers } from './backend/ipc';
-import { get } from 'http';
 
-const prisma = new PrismaClient();
 
 
 if (require('electron-squirrel-startup')) {
