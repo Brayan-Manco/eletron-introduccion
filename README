@@ -1,6 +1,6 @@
 #Aplicacion Eletroon
 
-Esto es una aplicacion de eletron CLI usando React, Typescript, Primsa.
+Esto es una aplicacion de eletron CLI usando React, Typescript, Primsa con SQLite.
 
 ## Instalación
 
@@ -12,3 +12,14 @@ Esto es una aplicacion de eletron CLI usando React, Typescript, Primsa.
     ```bash
     npm install
 
+3. Configurar Variables de entorno.  
+    Utiliza el template de env para crear la variable de entorno DATABASE_URL 
+    y ponle "file:./dev.db" siendo el dev nombre de la base de datos.
+
+4. Crea la primera migracion
+    ```bash
+    npx prisma migrate dev --name init
+
+5. Ejecutar el codigo 
+    ```bash
+    npx prisma migrate dev --name init
