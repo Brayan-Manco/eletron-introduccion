@@ -1,0 +1,14 @@
+#Aplicacion Eletroon
+
+Esto es una aplicacion de eletron CLI usando React, Typescript, Primsa.
+
+## Instalación
+
+1. Clona el repositorio:
+   ```bash
+   git clone https://github.com/Brayan-Manco/eletron-introduccion.git
+
+2. Instalar Dependencias
+    ```bash
+    npm install
+
