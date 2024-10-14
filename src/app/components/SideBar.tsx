@@ -1,15 +1,26 @@
 
 const SideBarProps = [
     {
-        tittle: 'Inicio',
+        title: 'Inicio',
         icon: "",
         path: '/',
     },
     {
-        tittle: 'Usuarios',
+        title: 'Usuarios',
         icon:  "",
         path: '/user',
+    },
+    {
+      title: 'Iniciar sesion',
+      icon: "",
+      path: "/auth"
+    },
+    {
+      title: 'Categorias',
+      icon: "",
+      path: "/category"
     }
+
 ]
 
 export const SideBar = () => {
@@ -18,6 +29,8 @@ export const SideBar = () => {
       style={{
         width: "200px",
         height: "100vh",
+        background: "#10375C",
+        color: "white"
       }}
     >
         <h1 style={{
@@ -48,11 +61,11 @@ export const SideBar = () => {
                 display: "flex",
                 gap: "10px",
                 textDecoration: "none",
-                color: "black",
+                color: "white",
             }}>
                 {item.icon}
                 <span style={{
-                }}>{item.tittle}</span>
+                }}>{item.title}</span>
             </a>
           </li>
         ))}

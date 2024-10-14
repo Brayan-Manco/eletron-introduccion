@@ -1,13 +1,32 @@
 import { useState } from "react";
-import { UserCreate } from "./templates/UserCreate";
-import { UserList } from "./templates/UserList";
+import { UserCreate } from "./components/UserCreate";
+import { UserList } from "./components/UserList";
 import { Button } from "../../components/Button";
+import { ModalUi } from "../../components/Modal/Modal";
+
+
+
+export const Styles  = {
+  width: '600px',
+  height: '400px', 
+  backgroundColor: "#10375C",
+  top: "100px",
+  left: "30%",
+  right: "50%",
+  bottom: "10px",
+  marginRight: "0",
+  transform: "",
+};
 
 export const UserPage = () => {
-  const [ active, setActive ] = useState(true);
+  const [ createIsOpen, setCreateIsOpen ] = useState(false);
+
+  function closeModal() {
+    setCreateIsOpen(false);
+  }
 
   const handleButton = () => {
-    setActive(a => !a)
+    setCreateIsOpen(true);
   }
 
   return (
@@ -15,13 +34,21 @@ export const UserPage = () => {
       <h1>User</h1>
       <div>
         <Button
-          name={active ? "Crear Usuario" : "Usuarios"}
+          name={"Usuarios"}
           variant="blue"
           type="button"
           onClick={handleButton}
         />
         <div>
-          { active ? <UserList/> : <UserCreate/>}
+          <UserList/> 
+          <ModalUi
+            isOpen={createIsOpen}
+            onRequestClose={closeModal}
+            title="Modal"
+            style={Styles}
+          >
+            <UserCreate/>
+          </ModalUi>
         </div>
       </div>
     </div>

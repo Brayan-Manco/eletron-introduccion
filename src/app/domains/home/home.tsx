@@ -1,6 +1,5 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { ModalUi } from "../../components/Modal/Modal";
-import { modalStyle } from "../../components/Modal/Modal.style";
 import { Button } from "../../components/Button";
 
 export const HomePage = () => {
@@ -21,11 +20,10 @@ export const HomePage = () => {
       <ModalUi
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        title="Modal"
-        style={modalStyle}
       >
         <h1>Modal</h1>
       </ModalUi>
     </div>
   )
 }
+

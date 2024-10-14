@@ -1,27 +1,7 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import ErrorPage from './domains/ErrorPage';
-import { HomePage } from './domains/home/home';
+import { RouterProvider } from 'react-router-dom';
 import { SideBar } from './components/SideBar';
-import { UserPage } from './domains/user/User';
+import { router } from './routes';
 
-
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <HomePage />,
-    errorElement: <ErrorPage />,
-    // children: [
-    //   {
-    //     path: '/contacts/:contactId',
-    //     element: <ConstactPage />,
-    //   },
-    // ]
-  },
-  {
-    path: '/user',
-    element: <UserPage />,
-  }
-]);
 
 export const App = () => {
   return (
@@ -38,7 +18,6 @@ export const App = () => {
         padding: "30px",
       }}  >
         <RouterProvider router={router} />
-      {/* <Footer /> */}
       </div>
     </div>
   )

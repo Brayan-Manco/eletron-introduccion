@@ -6,7 +6,15 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    /* background-color: #031227; */
+    background-color: #F4F6FF;
+}
+
+.modal {
+    position: absolute;
+    border-radius: 8px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
 }
 
 

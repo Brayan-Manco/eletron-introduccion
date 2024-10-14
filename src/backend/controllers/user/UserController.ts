@@ -1,6 +1,6 @@
-import prisma from "../client";
-import { userUpdate } from "../interfaces/user.interface";
-import { handleError } from "../utils";
+import prisma from "../../client";
+import { handleError } from "../../utils";
+import { userUpdate } from "./User-dto";
 
 export const createUser = async ( email: string, name: string, password: string ) => {
   try {

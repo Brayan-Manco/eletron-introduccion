@@ -26,6 +26,8 @@ export const Button = ({
         borderRadius: "5px",
         border: "none",
         cursor: "pointer",
+        marginRight: "5px",
+        marginLeft: "5px"
       }}
       onClick={onClick}
     >

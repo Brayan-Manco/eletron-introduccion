@@ -1,5 +1,5 @@
 import { ipcMain } from 'electron';
-import { createUser, deleteUser, getUser, getUsers, updateUser } from '../controllers/userController';
+import { createUser, deleteUser, getUser, getUsers, updateUser } from '../controllers/user/UserController';
 
 export function setupUserHandlers() {
   ipcMain.handle('createUser', async (event, { email, name, password }) => {

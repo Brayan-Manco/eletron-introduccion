@@ -30,7 +30,6 @@ export const UserCreate = () => {
         justifyContent: "center",
       }}
     >
-      <h1>Crear usuario</h1>
       <div>
         <form onSubmit={formik.handleSubmit}>
           <Input

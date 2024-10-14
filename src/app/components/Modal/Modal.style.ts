@@ -1,8 +1,11 @@
-export const modalStyle = {
-    top: "10",
-    left: "20px",
-    right: "30px",
-    bottom: "40px",
-    marginRight: "15px",
-    transform: "translate(-50%, -50%)",
+export const defaultStyles  = {
+    width: '600px',
+    height: '400px', 
+    backgroundColor: "#F4F6FF",
+    top: "100px",
+    left: "30%",
+    right: "50%",
+    bottom: "auto",
+    marginRight: "0",
+    transform: "",
 };

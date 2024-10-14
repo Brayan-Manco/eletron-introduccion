@@ -1,31 +1,13 @@
 import React from 'react';
 import Modal from 'react-modal'
-import { modalStyle } from './Modal.style';
+import { defaultStyles  } from './Modal.style';
 import { Button } from '../Button';
-
-import './style.css';
-
-interface ModalProps {
-    title: string,
-    onAfterOpen?: () => void;
-    onRequestClose: () => void,
-    isOpen: boolean;
-    style : {
-        top: string,
-        left: string,
-        right: string,
-        bottom: string,
-        marginRight: string,
-        transform: string,
-    },
-    children: React.ReactNode,
-}
+import { ModalProps } from './Modal.Props';
 
 Modal.setAppElement('#modal');
 
-export const ModalUi = ({
-    title,
-    style = modalStyle, 
+export const ModalUi= ({
+    style, 
     isOpen,
     onAfterOpen,
     onRequestClose,
@@ -34,12 +16,8 @@ export const ModalUi = ({
 
     const customStyles = {
         content: {
-            top: style.top,
-            left: style.left,
-            right: style.right,
-            bottom: style.bottom,
-            marginRight: style.marginRight,
-            transform: style.transform,
+            ...defaultStyles,
+            ...style,
         },
     };
 
@@ -52,11 +30,15 @@ export const ModalUi = ({
             className='modal'
             
         >
-            <div>
-                <h1>{title}</h1>
+            <div style={{
+                display: "flex",
+                alignItems: "rigth",
+                padding:  "10px",
+
+            }}>
                 <Button name='X' onClick={onRequestClose}/>
             </div>
-            <div>
+            <div style={{ padding:  "30px" }}>
                 {children}
             </div>
         </Modal>

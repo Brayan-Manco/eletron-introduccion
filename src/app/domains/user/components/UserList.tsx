@@ -1,9 +1,20 @@
+import { Table } from "../../../components/Table";
 import { handleError } from "../../../../backend/utils";
 import { Button } from "../../../components/Button";
 import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
+import { formatDate } from "../../../utils/dateUtils";
+
+type User = {
+  createdAt: string, 
+  email: string, 
+  id: string,
+  updatedAt: string
+}
 
 export const UserList = () => {
+
+
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -24,16 +35,25 @@ export const UserList = () => {
   const getAllUsers = async () => {
     try {
       setLoading(true);
-      const user = await window.api.getUsers();
-      setUsers(user);
+      const userData= await window.api.getUsers();
+
+      const formattedUser = userData.map((user: User)=>({
+        email:  user.email,
+        id: user.id,
+        createdAt: formatDate(user.createdAt),
+        updatedAt: formatDate(user.updatedAt),
+      }))
+      setUsers(formattedUser);
     } catch (err) {
       const handledError = handleError(err);
       setError(handledError.message);
-      console.log(err);
     } finally {
       setLoading(false);
     }
   };
+
+  const colums: Array<keyof User> = ["createdAt", "email", "updatedAt"];
+
 
   useEffect(() => {
     getAllUsers();
@@ -43,39 +63,17 @@ export const UserList = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-    }}>
-      <table style={{ width: '100%'}}>
-        <thead>
-          <tr>
-            <th>Nombre</th>
-            <th>Email</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.length === 0 ? (
-            <tr>
-              <td colSpan={2}>No se encontraron usuarios</td>
-            </tr>
-          ) : (
-            users.map((user) => (
-              <tr key={user.id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>
-                  <Button variant="red" name="Eliminar" onClick={() => deleteUser(user.id)}/> 
-                  <Button name="Actualizar" /> 
-                </td>
-              </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+    <div>
+      <Table 
+        columns={colums}
+        data={users}
+        renderActions={(users)=> (
+          <>
+            <Button variant="red" name="Eliminar" onClick={() => deleteUser(users.id)}/> 
+            <Button name="Actualizar" /> 
+          </>
+        )}
+      />
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import React from 'react'
-
 export const AuthPage = () => {
   return (
-    <div>AuthPage</div>
+    <div>
+      <h1>Auth</h1>
+    </div>
   )
 }
