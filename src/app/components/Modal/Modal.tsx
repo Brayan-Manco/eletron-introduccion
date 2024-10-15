@@ -1,4 +1,3 @@
-import React from 'react';
 import Modal from 'react-modal'
 import { defaultStyles  } from './Modal.style';
 import { Button } from '../Button';
@@ -31,14 +30,18 @@ export const ModalUi= ({
             
         >
             <div style={{
-                display: "flex",
-                alignItems: "rigth",
-                padding:  "10px",
-
+                padding:  '20px',
+                display:  'flex',
+                justifyContent: 'right'
             }}>
-                <Button name='X' onClick={onRequestClose}/>
+                <Button 
+                    name='X' 
+                    onClick={onRequestClose}
+                    variant='transparent'
+                />
             </div>
-            <div style={{ padding:  "30px" }}>
+            <div style={{ paddingLeft:  "30px", paddingRight: '30px', paddingBottom: '20px' }}>
+
                 {children}
             </div>
         </Modal>

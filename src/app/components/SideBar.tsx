@@ -6,19 +6,29 @@ const SideBarProps = [
         path: '/',
     },
     {
-        title: 'Usuarios',
-        icon:  "",
-        path: '/user',
-    },
-    {
-      title: 'Iniciar sesion',
+      title: "Caja",
       icon: "",
-      path: "/auth"
+      path: "/cash",
     },
+    // {
+    //     title: 'Usuarios',
+    //     icon:  "",
+    //     path: '/user',
+    // },
+    // {
+    //   title: 'Iniciar sesion',
+    //   icon: "",
+    //   path: "/auth"
+    // },
     {
       title: 'Categorias',
       icon: "",
       path: "/category"
+    },
+    {
+      title: 'Productos',
+      icon: "",
+      path: "/product"
     }
 
 ]

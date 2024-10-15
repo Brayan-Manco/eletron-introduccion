@@ -13,7 +13,7 @@ export const Table = <T,>({
 }: TableProps<T>) => {
   
   return (
-    <table style={{ width: 'auto', borderCollapse: 'collapse', margin: '10px'}}>
+    <table style={{ width: 'auto', borderCollapse: 'collapse', margin: '10px', background: 'white'}}>
       <thead>
         <tr>
           {columns.map((column) => (

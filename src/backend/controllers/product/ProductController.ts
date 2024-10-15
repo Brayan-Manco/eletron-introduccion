@@ -22,7 +22,11 @@ export const createProduct = async (product: CreateProduct) => {
 
 export const getProducts = async  () => {
     try {
-        const product = await prisma.product.findMany()
+        const product = await prisma.product.findMany({
+            include: {
+                category: true
+            }
+        })
         return product;
     } catch (err){
         handleError(err)

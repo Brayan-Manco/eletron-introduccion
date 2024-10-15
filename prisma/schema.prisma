@@ -28,10 +28,46 @@ model Product {
   stock Int
   category Category @relation(fields: [categoryId], references: [id])
   categoryId String
+  salesDetail SalesDetail[]
 }
 
 model Category {
   id    String @id @default(uuid())
   name  String
   products Product[]
+}
+
+model Sale {
+  id           String        @id @default(uuid())
+  createdAt    DateTime      @default(now())
+  total        Int
+  payment      Payment?      @relation(fields: [paymentId], references: [id])
+  paymentId    String?       @unique
+  salesDetails SalesDetail[]
+}
+
+model SalesDetail {
+  id        String   @id @default(uuid())
+  sale      Sale     @relation(fields: [saleId], references: [id])
+  saleId    String
+  product   Product  @relation(fields: [productId], references: [id])
+  productId String
+  quantity  Int
+  price     Int      // Precio unitario del producto al momento de la venta
+  subtotal  Int      // Cantidad * Precio
+}
+
+model Payment {
+  id             String        @id @default(uuid())
+  amount         Int
+  method         PaymentMethod @relation(fields: [methodId], references: [id])
+  methodId       String
+  sale           Sale?
+  createdAt      DateTime      @default(now())
+}
+
+model PaymentMethod {
+  id       String    @id @default(uuid())
+  name     String
+  payments Payment[]
 }

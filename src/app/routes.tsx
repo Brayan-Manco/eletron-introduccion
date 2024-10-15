@@ -4,6 +4,8 @@ import ErrorPage from "./domains/ErrorPage";
 import { UserPage } from "./domains/user/User";
 import { AuthPage } from "./domains/auth/Auth";
 import { CategoryPage } from "./domains/category/Category";
+import { ProductsPage } from "./domains/product/Products";
+import { CashPage } from "./domains/cashRegister/cash"
 
 export const router = createBrowserRouter([
     {
@@ -28,5 +30,15 @@ export const router = createBrowserRouter([
     {
       path: '/auth',
       element: <AuthPage/>
+    },
+    {
+      path: '/product',
+      element: <ProductsPage/>
+    },
+    {
+      path: '/cash',
+      element:  <CashPage/>
+
     }
+
   ]);

@@ -12,6 +12,7 @@ export interface ModalProps {
         bottom: string,
         marginRight: string,
         transform: string,
+        boxShadow: string,
     },
     children: React.ReactNode,
 }
