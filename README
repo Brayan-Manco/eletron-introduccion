@@ -22,4 +22,4 @@ Esto es una aplicacion de eletron CLI usando React, Typescript, Primsa con SQLit
 
 5. Ejecutar el codigo 
     ```bash
-    npx prisma migrate dev --name init
+    npm start

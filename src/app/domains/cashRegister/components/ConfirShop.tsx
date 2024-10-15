@@ -10,7 +10,8 @@ interface Producto {
 
 
 interface ConfirProps {
-  listShop: Producto[]
+  listShop: Producto[],
+
 }
 export const ConfirShop = ({ listShop }:ConfirProps) => {
 
@@ -57,7 +58,6 @@ export const ConfirShop = ({ listShop }:ConfirProps) => {
             <strong>Total:</strong> <span>${total.toFixed(2)}</span>
           </div>
           <Button 
-             
             name="Confirmar y Nueva Compra"
             variant="green" 
             full           
