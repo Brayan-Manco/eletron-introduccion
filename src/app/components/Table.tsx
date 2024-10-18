@@ -12,44 +12,78 @@ export const Table = <T,>({
   renderActions
 }: TableProps<T>) => {
   
+  // return (
+  //   <table style={{ width: 'auto', borderCollapse: 'collapse', margin: '10px', background: 'white'}}>
+  //     <thead>
+  //       <tr>
+  //         {columns.map((column) => (
+  //           <th key={column} style={{ border: '1px solid #ddd', padding: '8px' }}>
+
+  //             {column}
+  //           </th>
+  //         ))}
+  //       {renderActions && <th style={{ border: '1px solid #ddd', padding: '8px' }}>Acciones</th>}
+  //       </tr>
+  //     </thead>
+  //     <tbody>
+  //       {data.length === 0 ? (
+  //         <tr>
+  //           <td colSpan={2}>Sin registros</td>
+  //         </tr>
+  //       ): (
+  //         data.map((row, rowIndex) =>(
+  //           <tr key={rowIndex}>
+  //           {columns.map((column) => (
+  //             <td key={column} style={{ border: '1px solid #ddd', padding: '4px', paddingLeft:  '8px', paddingRight: '8px' }}>
+
+  //               {String(row[column])}
+  //             </td>
+  //           ))}
+  //           {renderActions && (
+  //             <td style={{ border: '1px solid #ddd', padding: '4px',  paddingLeft: '8px', paddingRight: '8px' }}>
+
+  //               {renderActions(row)}
+  //             </td>
+  //           )}
+  //         </tr>
+  //         ))
+  //       )}
+  //     </tbody>
+  //   </table>
+  // );
   return (
-    <table style={{ width: 'auto', borderCollapse: 'collapse', margin: '10px', background: 'white'}}>
-      <thead>
-        <tr>
-          {columns.map((column) => (
-            <th key={column} style={{ border: '1px solid #ddd', padding: '8px' }}>
-
-              {column}
-            </th>
-          ))}
-        {renderActions && <th style={{ border: '1px solid #ddd', padding: '8px' }}>Acciones</th>}
-        </tr>
-      </thead>
-      <tbody>
-        {data.length === 0 ? (
+    <div className="table-container">
+      <table className="custom-table">
+        <thead>
           <tr>
-            <td colSpan={2}>Sin registros</td>
-          </tr>
-        ): (
-          data.map((row, rowIndex) =>(
-            <tr key={rowIndex}>
             {columns.map((column) => (
-              <td key={column} style={{ border: '1px solid #ddd', padding: '4px', paddingLeft:  '8px', paddingRight: '8px' }}>
-
-                {String(row[column])}
-              </td>
+              <th key={column}>{column}</th>
             ))}
-            {renderActions && (
-              <td style={{ border: '1px solid #ddd', padding: '4px',  paddingLeft: '8px', paddingRight: '8px' }}>
-
-                {renderActions(row)}
-              </td>
-            )}
+            {renderActions && <th>Acciones</th>}
           </tr>
-          ))
-        )}
-      </tbody>
-    </table>
-  );
+        </thead>
+        <tbody>
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan={columns.length + (renderActions ? 1 : 0)} className="no-data">
+                Sin registros
+              </td>
+            </tr>
+          ) : (
+            data.map((row, rowIndex) => (
+              <tr key={rowIndex}>
+                {columns.map((column) => (
+                  <td key={column}>{String(row[column])}</td>
+                ))}
+                {renderActions && (
+                  <td className="actions-cell">{renderActions(row)}</td>
+                )}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </div>
+  )
 };
 

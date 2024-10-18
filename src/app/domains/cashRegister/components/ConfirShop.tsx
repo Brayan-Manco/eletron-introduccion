@@ -1,21 +1,20 @@
+import { useState } from "react";
 import { Button } from "../../../components/Button";
-
-interface Producto {
-  id: number;
-  name: string;
-  price: number;
-  img: string;
-  stock: number;
-}
-
+import { Producto } from "./interface/product.interface";
+import { ListItem } from "./ListItem";
 
 interface ConfirProps {
   listShop: Producto[],
-
+  setOpen: (value: boolean) => void;
+  setListShop: (productos: Producto[]) => void;
 }
-export const ConfirShop = ({ listShop }:ConfirProps) => {
+export const ConfirShop = ({ listShop, setOpen, setListShop }:ConfirProps) => {
 
-  const total = listShop.reduce((sum, producto) => sum + producto.price, 0);
+  const total = listShop.reduce((sum, producto) => sum + producto.price * producto.quantity, 0);
+  const handleConfirm = () => {
+    setOpen(false);
+    setListShop([]);
+  }
 
   return (
     <div>
@@ -24,29 +23,9 @@ export const ConfirShop = ({ listShop }:ConfirProps) => {
             color: '#333',
             borderBottom:  '2px solid #e0e0e0',
           }}>Resumen de Compra</h2>
-          <ul style={{
-            listStyle: 'none',
-            padding: 0,
-          }}>
-            {listShop.map((producto, index) => (
-              <li style={{
-                display:  'flex',
-                justifyContent:   'space-between',
-                alignItems:   'center',
-                padding:  '12px 0',
-                borderBottom:   '1px solid #eee',
-              }} key={index}>
-                {/* <img src={producto.img} alt={producto.name} /> */}
-                <div style={{
-                    flexGrow: 1,
-                    marginLeft: '15px',
-                  }}>
-                  <span style={{fontWeight: 'bold', color: '#333'}}>{producto.name}</span>
-                  <span style={{color: '#4CAF50', fontWeight: 'bold'}}>${producto.price.toFixed(2)}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <ListItem
+            list={listShop}
+          />
           <div style={{
             marginTop: '20px',
             fontSize: '1.2em',
@@ -57,11 +36,12 @@ export const ConfirShop = ({ listShop }:ConfirProps) => {
           }}>
             <strong>Total:</strong> <span>${total.toFixed(2)}</span>
           </div>
-          <Button 
-            name="Confirmar y Nueva Compra"
-            variant="green" 
-            full           
-          />
+            <Button 
+              name="Confirmar y Nueva Compra"
+              variant="green" 
+              full 
+              onClick={handleConfirm}          
+            />
         </div>
   )
 }

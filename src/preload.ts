@@ -6,6 +6,7 @@ import { contextBridge, ipcRenderer } from 'electron';
 import { userUpdate } from './backend/controllers/user/User-dto';
 import { CreateCategory, UpdateCategory } from './backend/controllers/category/Category-dto';
 import { CreateProduct, UpdateProduct } from './backend/controllers/product/Product-dto';
+import { CreatePayment, UpdatePayment } from './backend/controllers/paymentMethod/PaymentMethod.dto';
 
 
 contextBridge.exposeInMainWorld('api', {
@@ -29,6 +30,13 @@ contextBridge.exposeInMainWorld('api', {
     updateCate: (id: string, category: UpdateCategory) => ipcRenderer.invoke('updateCate', id,  category),
     getCategory: (id: string) => ipcRenderer.invoke('getCategory', id),
     deleteCategory: (id: string) => ipcRenderer.invoke('deleteCategory', id),
+
+    // PAYMENT
+    createPayment: (payment: CreatePayment) => ipcRenderer.invoke('createPayment', payment),
+    getPayments: () => ipcRenderer.invoke('getPayments'),
+    getPayment: (id: string) => ipcRenderer.invoke('getPayment', id),
+    updatePayment: (id: string, payment: UpdatePayment) => ipcRenderer.invoke('updatePayment', id,  payment),
+    deletePayment: (id: string) => ipcRenderer.invoke('deletePayment', id),
 
 });
 

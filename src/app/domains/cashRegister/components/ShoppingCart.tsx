@@ -1,28 +1,52 @@
+import { Dispatch, SetStateAction, useState } from "react";
 import { Button } from "../../../components/Button";
-
-
-interface Producto {
-    id: number;
-    name: string;
-    price: number;
-    img: string;
-    stock: number;
-  }
+import { Producto } from "./interface/product.interface";
+import { ListItem } from "./ListItem";
 
 interface ListCartProps {
-    listShop: Producto[];
-    deleteProduct: (index: number) => void;
-    total: number;
-    finishShop: () => void;
-  }
+  listShop: Producto[];
+  setListShop:  Dispatch<SetStateAction<Producto[]>>;
+  total: number;
+  setOpen: (value: boolean) => void;
+}
 
 export const ShoppingCart = ({
     listShop,
-    deleteProduct,
+    setListShop,
     total,
-    finishShop,
+    setOpen
 }:  ListCartProps) => {
 
+
+  const addProducts =  (product: Producto) => {
+    const updatedList = listShop.map((item) =>
+      item.id === product.id
+        ? { ...item, quantity: item.quantity + 1 }
+        : item
+    );
+    setListShop(updatedList);
+  }
+
+  const deleteProduct = (producto: Producto) => {
+    const productExist = listShop.find(item => item.id === producto.id);
+    if (productExist && productExist.quantity > 1) {
+      const updatedList = listShop.map(item =>
+        item.id === producto.id
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      );
+      setListShop(updatedList);
+    } else {
+      const filteredList = listShop.filter(item => item.id !== producto.id);
+      setListShop(filteredList); 
+    }
+  };
+
+  const  handleCheckout = () => {
+    setOpen(true);
+  }
+
+  
     return (
         <div style={{
           flex: 1,
@@ -50,33 +74,25 @@ export const ShoppingCart = ({
               fontStyle: 'italic'
             }}>El carrito está vacío</p>
           ) : (
-            <ul style={{
-              listStyle: 'none',
-              padding: 0,
-            }}>
-              {listShop.map((producto, index) => (
-                <li style={{
-                  display:  'flex',
-                  justifyContent:   'space-between',
-                  alignItems:   'center',
-                  padding:  '12px 0',
-                  borderBottom:   '1px solid #eee',
-                }} key={index}>
-                  <div style={{
-                    flexGrow: 1,
-                    marginLeft: '15px',
-                  }}>
-                    <span style={{fontWeight: 'bold', color: '#333'}}>{producto.name}</span>
-                    <span style={{color: '#4CAF50', fontWeight: 'bold'}}>${producto.price.toFixed(2)}</span>
-                  </div>
+            <ListItem
+              list={listShop}
+              renderActions={(product) =>(
+                <>
+                <Button 
+                    onClick={() => addProducts(product)} 
+                    name="+" 
+                    variant="green"
+                    />
+                  <p style={{ marginLeft: '5px', marginRight:  '5px' }}
+                  >{product.quantity}</p>
                   <Button 
-                    onClick={() => deleteProduct(index)} 
+                    onClick={() => deleteProduct(product)} 
                     name="-" 
                     variant="red"
                   />
-                </li>
-              ))}
-            </ul>
+                </>
+              )}
+            />
           )}
           <div style={{
             marginTop: '20px',
@@ -89,7 +105,7 @@ export const ShoppingCart = ({
             <strong>Total:</strong> <span>${total.toFixed(2)}</span>
           </div>
             <Button 
-              onClick={finishShop} 
+              onClick={handleCheckout} 
               disabled={listShop.length === 0}
               name="Finalizar Compra"
               full

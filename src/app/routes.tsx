@@ -6,6 +6,7 @@ import { AuthPage } from "./domains/auth/Auth";
 import { CategoryPage } from "./domains/category/Category";
 import { ProductsPage } from "./domains/product/Products";
 import { CashPage } from "./domains/cashRegister/cash"
+import { PaymentPage } from "./domains/payment/Payment";
 
 export const router = createBrowserRouter([
     {
@@ -38,7 +39,10 @@ export const router = createBrowserRouter([
     {
       path: '/cash',
       element:  <CashPage/>
-
+    },
+    {
+      path: '/payment',
+      element: <PaymentPage/>
     }
 
   ]);

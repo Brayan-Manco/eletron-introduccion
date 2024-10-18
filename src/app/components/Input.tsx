@@ -4,10 +4,12 @@ interface InputProps {
   value: string;
   id: string;
   name: string;
+  state?: boolean,
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-export const Input = ({ type, placeholder, value, onChange, id, name }: InputProps) => {
+export const Input = ({ type, placeholder, value, onChange, id, name, state  }: InputProps) => {
+
   return (
     <div
       style={{
@@ -17,7 +19,7 @@ export const Input = ({ type, placeholder, value, onChange, id, name }: InputPro
         margin: "10px",
       }}
     >
-      <p>{placeholder}</p>
+      <p>{!state ? placeholder : ''}</p>
       <input
         style={{
           padding: "20px",

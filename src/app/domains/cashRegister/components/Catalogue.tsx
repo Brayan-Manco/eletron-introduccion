@@ -1,25 +1,41 @@
+import { Input } from "../../../components/Input";
 import { Button } from "../../../components/Button";
-
-interface Producto {
-    id: number;
-    name: string;
-    price: number;
-    img: string;
-    stock: number;
-  }
+import { Producto } from "./interface/product.interface";
+import { ListItem } from "./ListItem";
+import { Dispatch, SetStateAction, useState } from "react";
 
 interface BusquedaProductosProps {
-  search: string;
-  setSearch: React.Dispatch<React.SetStateAction<string>>;
-  productsFilter: Producto[];
-  addProduct: (producto: Producto) => void;
+  products: Producto[];
+  setListShop:  Dispatch<SetStateAction<Producto[]>>;
+  listShop:  Producto[];
 }
 export const Catalogue = ({
-    search,
-    setSearch,
-    productsFilter,
-    addProduct,
+    products,
+    setListShop,
+    listShop,
 }:  BusquedaProductosProps) => {
+
+  const [search, setSearch] = useState<string>("");
+
+  const productosFiltrados = products.filter(producto =>
+    producto.name.toLowerCase().includes(search.toLowerCase())
+  );
+
+  const handleSearch = ( event:  React.ChangeEvent<HTMLInputElement> ) => {
+    setSearch(event.target.value);
+  }
+
+  const  handleAddProduct = (producto: Producto) => { 
+    const productExist  = listShop.find(item => item.id === producto.id);
+    if(productExist){
+      const updatedList = listShop.map(item => 
+        item.id === producto.id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    setListShop(updatedList)
+    } else {
+      setListShop([...listShop, { ...producto,  quantity: 1 }]);
+    }
+  }
 
   return (
     <div style={{
@@ -39,46 +55,26 @@ export const Catalogue = ({
         borderBottom:  '2px solid #e0e0e0',
         padding:  '10px',
       }}>Catálogo de Productos</h2>
-      <input style={{
-        width: '100%',
-        padding: '12px',
-        marginBottom:  '20px',
-        border:   '1px solid #ddd',
-        borderRadius:   '6px',
-        transition: 'border-color 0.3s'
-      }}
+      <Input
+        id="search"
+        name="search"
         type="text"
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        onChange={handleSearch}
         placeholder="Buscar producto..."
+        value={search}
+        state
       />
-      <ul style={{
-        listStyle: 'none',
-        padding: 0,
-      }}>
-        {productsFilter.map(producto => (
-          <li style={{
-            display:  'flex',
-            justifyContent:   'space-between',
-            alignItems:   'center',
-            padding:  '12px 0',
-            borderBottom:   '1px solid #eee',
-          }} key={producto.id}>
-            <div style={{
-              flexGrow: 1,
-              marginLeft: '15px',
-            }}>
-              <span style={{fontWeight: 'bold', color: '#333'}}>{producto.name}</span>
-              <span style={{color: '#4CAF50', fontWeight: 'bold'}}>${producto.price.toFixed(2)}</span>
-            </div>
-            <Button 
-              onClick={() => addProduct(producto)} 
+      <ListItem
+        list={productosFiltrados}
+        renderActions={(producto) =>(
+          <Button 
+              onClick={() => handleAddProduct(producto)} 
               variant="green" 
               name="+"
             />
-          </li>
-        ))}
-      </ul>
+        )}
+      />
+
     </div>
   );
 }

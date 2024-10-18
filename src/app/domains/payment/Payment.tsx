@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
-import { ListCategory } from './components/ListCategory'
-import { CreateUpdateCategory } from './components/Create-Update.Category'
-import { ModalUi } from '../../components/Modal/Modal';
-import { Button } from '../../components/Button';
+import { useState } from "react";
+import { ModalUi } from "../../components/Modal/Modal";
+import { CreateUpdatePayment } from "./components/Create-Update.Payment"
+import { Button } from "../../components/Button";
+import { ListPayment } from "./components/ListPayment";
 
-export const CategoryPage = () => {
+export const PaymentPage = () => {
 
   const [ createIsOpen, setCreateIsOpen ] = useState(false);
-  const [ refreshCategories, setRefreshCategories ] = useState(false);
+  const [ refreshPayment, setRefreshPayment ] = useState(false);
 
   function closeModal() {
     setCreateIsOpen(false);
@@ -16,7 +16,6 @@ export const CategoryPage = () => {
   const handleButton = () => {
     setCreateIsOpen(true);
   }
-
 
   return (
     <div style={{
@@ -28,7 +27,7 @@ export const CategoryPage = () => {
         alignItems: 'center',
         padding: '5px',
       }}>
-        <h1>Categorias</h1>
+        <h1>Metodos de pago</h1>
         <Button
             name={"Crear"}
             variant="blue"
@@ -41,21 +40,20 @@ export const CategoryPage = () => {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-        <ListCategory refreshCategories={refreshCategories}/>
+        <ListPayment setRefreshPayment={refreshPayment} />
       </div>
 
       <ModalUi 
         isOpen={createIsOpen}
         onRequestClose={closeModal}
       >
-        <CreateUpdateCategory 
+        <CreateUpdatePayment 
           onSuccess={() =>{
+            setRefreshPayment(!refreshPayment);
             setCreateIsOpen(false);
-            setRefreshCategories(!refreshCategories);
           }}
         />
       </ModalUi>
     </div>
-    
   )
 }

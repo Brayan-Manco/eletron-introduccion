@@ -17,7 +17,7 @@ export const App = () => {
         height: "100vh",
         padding: "30px",
       }}  >
-        <RouterProvider router={router} />
+        <RouterProvider router={router}/>
       </div>
     </div>
   )
