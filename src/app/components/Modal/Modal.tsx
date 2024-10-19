@@ -1,6 +1,6 @@
 import Modal from 'react-modal'
 import { defaultStyles  } from './Modal.style';
-import { Button } from '../Button';
+import { Button } from '../Button/Button';
 import { ModalProps } from './Modal.Props';
 
 Modal.setAppElement('#modal');

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button } from '../../../components/Button';
+import { Button } from '../../../components/Button/Button';
 import { Input } from '../../../components/Input';
 import { useFormik } from 'formik';
 

@@ -1,5 +1,5 @@
 import { Input } from "../../../components/Input";
-import { Button } from "../../../components/Button";
+import { Button } from "../../../components/Button/Button";
 import { Producto } from "./interface/product.interface";
 import { ListItem } from "./ListItem";
 import { Dispatch, SetStateAction, useState } from "react";

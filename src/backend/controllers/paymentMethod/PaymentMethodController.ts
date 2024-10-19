@@ -1,10 +1,10 @@
 import prisma from "../../client"
 import { handleError } from "../../utils";
-import { CreatePayment, UpdatePayment } from "./PaymentMethod.dto"
+import { CreatePaymentMethod, UpdatePayment } from "./PaymentMethod.dto"
 
 
 
-export const createPayment = async( payment: CreatePayment) =>{
+export const createPayment = async( payment: CreatePaymentMethod) =>{
     try {
         const resp = await prisma.paymentMethod.create({
             data: {

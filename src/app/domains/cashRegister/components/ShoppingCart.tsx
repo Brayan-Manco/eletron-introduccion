@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction, useState } from "react";
-import { Button } from "../../../components/Button";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Button } from "../../../components/Button/Button";
 import { Producto } from "./interface/product.interface";
 import { ListItem } from "./ListItem";
 
@@ -8,15 +8,18 @@ interface ListCartProps {
   setListShop:  Dispatch<SetStateAction<Producto[]>>;
   total: number;
   setOpen: (value: boolean) => void;
+  setSaleId:  Dispatch<SetStateAction<string>>;
+  saleId: string;
 }
 
 export const ShoppingCart = ({
     listShop,
     setListShop,
     total,
-    setOpen
+    setOpen,
+    setSaleId,
+    saleId
 }:  ListCartProps) => {
-
 
   const addProducts =  (product: Producto) => {
     const updatedList = listShop.map((item) =>
@@ -42,9 +45,23 @@ export const ShoppingCart = ({
     }
   };
 
-  const  handleCheckout = () => {
-    setOpen(true);
+  
+  const  handleCheckout = async() => {
+    try {
+      if(!saleId){
+        const resp = await window.api.createSale();
+        setSaleId(resp.id)
+        console.log(resp)
+        setOpen(true);
+      } else {
+        setSaleId(saleId)
+      }
+    } catch (err){
+      console.error(err);
+    }
   }
+
+
 
   
     return (

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import './Button.css';
+
 interface ButtonProps {
   name?: string;
   variant?: "blue" | "red" | "green" | "transparent";
@@ -14,30 +16,27 @@ export const Button = ({
   variant = "blue",
   onClick,
   type = "button",
-  disabled = false,
+  disabled,
   full
 }: ButtonProps) => {
 
   const [isHovered, setIsHovered] = useState(false);
   const [isActive, setIsActive] = useState(false);
 
+  const buttonClasses = [
+    'button',
+    `button--${variant}`,
+    full ? 'button--full' : '',
+    isHovered ? 'button--hovered' : '',
+    isActive ? 'button--active' : '',
+    disabled ? 'button--disabled' : '',
+  ].join(' ');
+
   return (
     <button
       type={type}
       disabled={disabled}
-      style={{
-        backgroundColor: variant,
-        color: variant === 'transparent'  ? 'black' : 'white',
-        padding: "10px 20px",
-        borderRadius: "5px",
-        border: "none",
-        width: full ? '100%' :  'auto',
-        cursor: "pointer",
-        marginRight: full ? "" : "5px",
-        marginLeft: full ? "" :"5px",
-        transform: isActive ? 'translateY(0)' : isHovered ? 'translateY(-2px)' : 'translateY(0)',
-        transition: 'transform 0.1s, background-color 0.1s',
-      }}
+      className={buttonClasses}
       onClick={onClick}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

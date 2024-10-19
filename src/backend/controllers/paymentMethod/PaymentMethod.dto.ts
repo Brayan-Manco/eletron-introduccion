@@ -1,4 +1,4 @@
-export interface CreatePayment {
+export interface CreatePaymentMethod {
     name: string,
 }
 

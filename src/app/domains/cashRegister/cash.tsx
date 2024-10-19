@@ -11,6 +11,7 @@ export const CashPage = () => {
   const [listShop, setListShop] = useState<Producto[]>([]);
   const [OpenModal, setOpenModal] = useState(false);
   const [productos , setProduct] = useState<Producto[]>([]);
+  const [ saleId, setSaleId ] = useState<string>();
 
   const total = listShop.reduce((sum, producto) => sum + producto.price * producto.quantity, 0);
 
@@ -57,6 +58,8 @@ export const CashPage = () => {
         listShop={listShop}
         total={total}
         setOpen={setOpenModal}
+        setSaleId={setSaleId}
+        saleId={saleId}
       />
 
       <ModalUi
@@ -65,9 +68,9 @@ export const CashPage = () => {
       >
         <ConfirShop 
           listShop={listShop}
-          Open={OpenModal}
           setOpen={setOpenModal}
           setListShop={setListShop}
+          saleId={saleId}
         />
       </ModalUi>
     </div>

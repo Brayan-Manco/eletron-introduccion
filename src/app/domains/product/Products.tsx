@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/Button/Button";
 import { ListProduct } from "./components/ListProduct";
 import { ModalUi } from "../../components/Modal/Modal";
 import { CreateUpdateproduct } from "./components/Create-Update.product";
+import { Heading } from "../../components/Heading/Heading";
 
 
 export const ProductsPage = () => {
@@ -26,7 +27,7 @@ export const ProductsPage = () => {
         alignItems: 'center',
         padding: '5px',
       }}>
-        <h1>Productos</h1>
+        <Heading  title="Productos" />
         <Button
             name={"Crear"}
             variant="blue"

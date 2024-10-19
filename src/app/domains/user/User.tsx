@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { UserCreate } from "./components/UserCreate";
 import { UserList } from "./components/UserList";
-import { Button } from "../../components/Button";
+import { Button } from "../../components/Button/Button";
 import { ModalUi } from "../../components/Modal/Modal";
 
 
@@ -44,8 +44,6 @@ export const UserPage = () => {
           <ModalUi
             isOpen={createIsOpen}
             onRequestClose={closeModal}
-            title="Modal"
-            style={Styles}
           >
             <UserCreate/>
           </ModalUi>

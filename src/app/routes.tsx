@@ -7,6 +7,7 @@ import { CategoryPage } from "./domains/category/Category";
 import { ProductsPage } from "./domains/product/Products";
 import { CashPage } from "./domains/cashRegister/cash"
 import { PaymentPage } from "./domains/payment/Payment";
+import { HistoryPage } from "./domains/history/History";
 
 export const router = createBrowserRouter([
     {
@@ -43,6 +44,9 @@ export const router = createBrowserRouter([
     {
       path: '/payment',
       element: <PaymentPage/>
-    }
-
+    },
+    {
+      path: '/history',
+      element: <HistoryPage/>
+    },
   ]);

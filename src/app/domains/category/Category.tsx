@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import { ListCategory } from './components/ListCategory'
 import { CreateUpdateCategory } from './components/Create-Update.Category'
 import { ModalUi } from '../../components/Modal/Modal';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/Button/Button';
+import { Heading } from '../../components/Heading/Heading';
 
 export const CategoryPage = () => {
 
@@ -28,7 +29,7 @@ export const CategoryPage = () => {
         alignItems: 'center',
         padding: '5px',
       }}>
-        <h1>Categorias</h1>
+        <Heading title="Categorias"/>
         <Button
             name={"Crear"}
             variant="blue"

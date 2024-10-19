@@ -1,3 +1,5 @@
+import React from 'react';
+import './Select.css'; // Importa los estilos desde el archivo CSS
 
 interface SelectOption {
   label: string;
@@ -5,8 +7,8 @@ interface SelectOption {
 }
 
 interface SelectProps {
-  id: string,
-  name: string,
+  id: string;
+  name: string;
   options: SelectOption[];
   value: string | number;
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -15,7 +17,7 @@ interface SelectProps {
   disabled?: boolean;
 }
 
-export const Select  = ({
+export const Select = ({
   id,
   name,
   options,
@@ -26,21 +28,15 @@ export const Select  = ({
   disabled = false,
 }: SelectProps) => {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', marginBottom: '10px', margin: "10px", }}>
-      {label && <label style={{ marginBottom: '5px' }}>{label}</label>}
+    <div className="select-container">
+      {label && <label className="select-label" htmlFor={id}>{label}</label>}
       <select
         id={id}
         name={name}
         value={value}
         onChange={onChange}
         disabled={disabled}
-        style={{
-          padding: '8px',
-          borderRadius: '4px',
-          border: '1px solid #ddd',
-          cursor: disabled ? 'not-allowed' : 'pointer',
-          backgroundColor: disabled ? '#f2f2f2' : '#fff',
-        }}
+        className={`select-input ${disabled ? 'select-input--disabled' : ''}`}
       >
         <option value="" disabled>{placeholder}</option>
         {options.map((option) => (

@@ -1,6 +1,6 @@
 import { ModalUi } from "../../../components/Modal/Modal";
-import { Button } from "../../../components/Button";
-import { Table } from "../../../components/Table";
+import { Button } from "../../../components/Button/Button";
+import { Table } from "../../../components/Table/Table";
 import { useEffect, useState } from "react"
 import { CreateUpdateproduct } from "./Create-Update.product";
 
@@ -20,7 +20,10 @@ type Product = {
         id: string,
         name: string
     }
-    categoria: string
+    categoria: string,
+    nombre: string,
+    precio:  string,
+    cantidad:  string,
 }
 
 
@@ -57,6 +60,9 @@ export const ListProduct = ({ refreshProduct }:  listProps) => {
             const formattedProducts = data.map((product: Product) => ({
                 //se formate para obtener  los datos de la categoria
                 ...product,
+                nombre: product.name,
+                precio: product.price,
+                cantidad: product.stock,
                 categoria: product.category.name,
             }));
             setProducts(formattedProducts)
@@ -67,7 +73,7 @@ export const ListProduct = ({ refreshProduct }:  listProps) => {
     }
 
     
-    const colums: Array<keyof Product | 'categoria'> = ['name', 'price', 'stock', 'categoria'];
+    const colums: Array<keyof Product | 'categoria'> = ['nombre', 'precio', 'cantidad', 'categoria'];
 
 
     useEffect(()=>{

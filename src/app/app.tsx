@@ -1,5 +1,5 @@
 import { RouterProvider } from 'react-router-dom';
-import { SideBar } from './components/SideBar';
+import { SideBar } from './components/SideBar/SideBar';
 import { router } from './routes';
 
 

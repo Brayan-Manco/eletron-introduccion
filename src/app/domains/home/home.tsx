@@ -1,7 +1,10 @@
+import { Heading } from "../../components/Heading/Heading";
 
 export const HomePage = () => {
   
   return (
-   <div><p>Home</p></div>
+   <div>
+        <Heading title="Home"/>
+   </div>
   );
 };

@@ -1,5 +1,5 @@
-import { Select } from "../../../components/Select";
-import { Button } from "../../../components/Button";
+import { Select } from "../../../components/Select/Select";
+import { Button } from "../../../components/Button/Button";
 import { Input } from "../../../components/Input";
 import { useFormik } from "formik";
 import { useEffect, useState } from "react";

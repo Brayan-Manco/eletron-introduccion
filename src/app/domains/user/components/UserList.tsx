@@ -1,6 +1,6 @@
-import { Table } from "../../../components/Table";
+import { Table } from "../../../components/Table/Table";
 import { handleError } from "../../../../backend/utils";
-import { Button } from "../../../components/Button";
+import { Button } from "../../../components/Button/Button";
 import { User } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { formatDate } from "../../../utils/dateUtils";

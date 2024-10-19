@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Button } from "../../../components/Button";
-import { Table } from "../../../components/Table";
+import { Button } from "../../../components/Button/Button";
+import { Table } from "../../../components/Table/Table";
 import { CreateUpdateCategory } from "./Create-Update.Category";
 import { ModalUi } from "../../../components/Modal/Modal";
 

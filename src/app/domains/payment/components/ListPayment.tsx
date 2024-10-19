@@ -1,6 +1,6 @@
-import { Button } from "../../../components/Button";
+import { Button } from "../../../components/Button/Button";
 import { ModalUi } from "../../../components/Modal/Modal";
-import { Table } from "../../../components/Table";
+import { Table } from "../../../components/Table/Table";
 import { useEffect, useState } from "react";
 import { CreateUpdatePayment } from "./Create-Update.Payment";
 
@@ -13,8 +13,6 @@ type Payment = {
 interface  ListProps {
   setRefreshPayment: boolean;
 }
-
-
 
 export const ListPayment = ({ setRefreshPayment }: ListProps) => {
 

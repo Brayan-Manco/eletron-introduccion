@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { ModalUi } from "../../components/Modal/Modal";
 import { CreateUpdatePayment } from "./components/Create-Update.Payment"
-import { Button } from "../../components/Button";
+import { Button } from "../../components/Button/Button";
 import { ListPayment } from "./components/ListPayment";
+import { Heading } from "../../components/Heading/Heading";
 
 export const PaymentPage = () => {
 
@@ -27,7 +28,7 @@ export const PaymentPage = () => {
         alignItems: 'center',
         padding: '5px',
       }}>
-        <h1>Metodos de pago</h1>
+        <Heading title="Metodos de pago"/>
         <Button
             name={"Crear"}
             variant="blue"

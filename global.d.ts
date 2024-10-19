@@ -1,3 +1,4 @@
+
 export {};
 
 declare global {
@@ -24,12 +25,23 @@ declare global {
       getCategory: (id: string) => Promise<any>;
       deleteCategory: (id: string) => Promise<any>;
 
-      // PAYMENT
-      createPayment: (payment: CreatePayment) => Promise<any>;
+      // PAYMENT METHOD
+      createPayment: (payment: CreatePaymentMethod) => Promise<any>;
       getPayments: () => Promise<any>;
       getPayment: (id: string) => Promise<any>;
       updatePayment: (id: string, payment: UpdatePayment) => Promise<any>;
       deletePayment: (id: string) => Promise<any>;
+
+      // PAYMENT
+      createPay: (id: string, total: number ) => Promises<any>,
+
+      // SALE
+      createSale: () => Promise<any>;
+      getSales: () => Promise<any>;
+      updateSale: (id: string, paymentId: string, total: number) => Promise<any>;
+
+      // SALE DETAILS
+      createSaleDetails: (id: string, sale:  CreateSaleDetails) => Promise<any>;
     }
   }
 }
