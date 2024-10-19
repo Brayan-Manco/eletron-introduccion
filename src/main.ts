@@ -22,7 +22,7 @@ const createWindow = () => {
       nodeIntegration: false,
     },
     // esconde la barra de menu predefinida de electron
-    // autoHideMenuBar: true,
+    autoHideMenuBar: true,
   });
 
   session.defaultSession.webRequest.onHeadersReceived((details, callback) => { 
@@ -44,7 +44,7 @@ const createWindow = () => {
   }
 
   // Open the DevTools.
-  mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 app.whenReady().then(async () => {

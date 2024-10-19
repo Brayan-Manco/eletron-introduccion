@@ -17,5 +17,5 @@
       "@/*": ["./src*"],
     }
   },
-  "include": ["src/**/*", "global.d.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "global.d.ts"]
 }
