@@ -38,6 +38,7 @@ declare global {
       // SALE
       createSale: () => Promise<any>;
       getSales: () => Promise<any>;
+      getSale: (id: string) =>Promise<any>
       updateSale: (id: string, paymentId: string, total: number) => Promise<any>;
 
       // SALE DETAILS

@@ -18,7 +18,11 @@ export const getSales = async() =>{
     try {
         const resp = await prisma.sale.findMany({
             include: {
-                salesDetails: true,
+                salesDetails: {
+                    include: {
+                        product: true
+                    }
+                },
                 payment: {
                     include: {
                         method:true
@@ -37,15 +41,23 @@ export const getSale = async(id: string) => {
         const resp = await prisma.sale.findUnique({
             where: { id },
             include: {
-                salesDetails: true
+                salesDetails: {
+                    include: {
+                        product: true
+                    }
+                },
+                payment: {
+                    include: {
+                        method:true
+                    }
+                }
             }
         })
-
         if(!resp) throw new Error('Sale not found')
-        
         return resp;
     } catch (err) {
         handleError(err)
+        console.log(err)
     }
 }
 

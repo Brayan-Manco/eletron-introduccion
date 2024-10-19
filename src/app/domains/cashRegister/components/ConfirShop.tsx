@@ -94,7 +94,8 @@ export const ConfirShop = ({ listShop, setOpen, setListShop, saleId }:ConfirProp
               name="Confirmar y Nueva Compra"
               variant="green" 
               full 
-              onClick={handleConfirm}          
+              onClick={handleConfirm}  
+              disabled={ selectedPayment === '' }        
             />
             <Button 
               name="Cancelar"

@@ -1,8 +1,8 @@
 {
-  "name": "eletron",
-  "productName": "eletron",
+  "name": "caja",
+  "productName": "Caja",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Programa de ventas de caja simple con CRUD",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",

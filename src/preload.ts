@@ -48,6 +48,7 @@ contextBridge.exposeInMainWorld('api', {
     createSale: () => ipcRenderer.invoke('createSale'),
     getSales: () => ipcRenderer.invoke('getSales'),
     updateSale: (id: string, paymentId: string, total: number) => ipcRenderer.invoke('updateSale', id,  paymentId, total),
+    getSale: (id: string) => ipcRenderer.invoke('getSale', id),
 
     // SALE DETAILS
     createSaleDetails: (id: string, sale: CreteateSaleDetails) => ipcRenderer.invoke('createSaleDetails', id, sale)
